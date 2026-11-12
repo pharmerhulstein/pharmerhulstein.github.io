@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NomTag meal label</title>
+<style>
+body{margin:0;background:#efe8d6;color:#111;font:16px/1.5 "Courier New",Courier,monospace}
+.w{max-width:420px;margin:0 auto;padding:28px 20px}
+h1{font-size:22px;letter-spacing:.06em;text-transform:uppercase;text-align:center;margin:0 0 4px}
+.sub{text-align:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.t{border:2px solid #111;background:#f7f1e3;text-align:center;padding:12px 6px}
+.t b{display:block;font-size:28px}.t span{font-size:11px;letter-spacing:.1em}
+.box{border:2px solid #111;background:#f7f1e3;padding:14px;font-size:14px}
+a{color:#111}
+</style></head><body><div class="w">
+<h1 id="n">NomTag</h1><div class="sub">Macros per portion</div>
+<div class="g" id="g" hidden>
+<div class="t"><b id="c"></b><span>CALORIES</span></div>
+<div class="t"><b id="p"></b><span>PROTEIN</span></div>
+<div class="t"><b id="f"></b><span>FAT</span></div>
+<div class="t"><b id="b"></b><span>CARBS</span></div></div>
+<div class="box" id="msg">This is a NomTag meal label. Scan it with the NomTag app to log the macros to your day.</div>
+<p style="text-align:center;font-size:12px;margin-top:20px"><a href="https://pharmerhulstein.github.io/nomtag-privacy/privacy.html">Privacy policy</a></p>
+</div>
+<script>
+(function () {
+  var m = /^\?(\d+(?:\.\d+)?)_(\d+(?:\.\d+)?)_(\d+(?:\.\d+)?)_(\d+(?:\.\d+)?)(?:_(.*))?$/.exec(location.search);
+  if (!m) { return; }
+  var name = "NomTag meal";
+  if (m[5]) { try { name = decodeURIComponent(m[5].replace(/\+/g, " ")); } catch (e) { name = m[5]; } }
+  document.getElementById("n").textContent = name.slice(0, 60);
+  document.getElementById("c").textContent = m[1];
+  document.getElementById("p").textContent = m[2] + "g";
+  document.getElementById("f").textContent = m[3] + "g";
+  document.getElementById("b").textContent = m[4] + "g";
+  document.getElementById("g").hidden = false;
+})();
+</script></body></html>
